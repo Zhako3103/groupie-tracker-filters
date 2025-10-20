@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <title>{{ .Name }} — Groupie Trackers</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+    <header class="artist-header">
+        <a class="back" href="/">← Назад</a>
+        <h1>{{ .Name }}</h1>
+    </header>
+    <div style="text-align:center; font-size:22px; font-weight:bold; margin-top:10px; color: aliceblue;">{{ .Name }}</div>
+    <main class="artist-container">
+        <div class="artist-card">
+            <img class="artist-img" src="{{ .Image }}" alt="{{ .Name }}" style="min-width: 480px; min-height: 480px; width:auto; height:auto; display:block; margin:auto; border-radius:10px; object-fit:cover;">
+            <div class="artist-info">
+                <p><strong>Год основания:</strong> {{ .CreationDate }}</p>
+                <p><strong>Первый альбом:</strong> {{ .FirstAlbum }}</p>
+
+                <h3>Участники</h3>
+                <ul>
+                    {{ range .Members }}<li>{{ . }}</li>{{ end }}
+                </ul>
+
+                <h3>Локации (locations)</h3>
+                <ul>
+                    {{ if .Locations }}
+                    {{ range .Locations }}<li>{{ . }}</li>{{ end }}
+                    {{ else }}
+                    <li>Нет данных</li>
+                    {{ end }}
+                </ul>
+
+                <h3>Даты (dates)</h3>
+                <ul>
+                    {{ if .Dates }}
+                    {{ range .Dates }}<li>{{ . }}</li>{{ end }}
+                    {{ else }}
+                    <li>Нет данных</li>
+                    {{ end }}
+                </ul>
+
+                <h3>Концерты (city → даты) — relation</h3>
+                <div class="concerts">
+                    {{ if .DatesByPlace }}
+                    {{ range $city, $dates := .DatesByPlace }}
+                    <div class="concert">
+                        <strong>{{ $city }}:</strong>
+                        {{ range $i, $d := $dates }}{{ if $i }}, {{ end }}{{ $d }}{{ end }}
+                    </div>
+                    {{ end }}
+                    {{ else }}
+                    <p>Нет данных relation</p>
+                    {{ end }}
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

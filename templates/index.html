@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tetris Artists</title>
+    <link rel="stylesheet" href="/static/css/mainpage.css">
+    <script defer src="/static/js/script.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Artists</h1>
+        <div class="header-flex">
+            <form id="filters" method="get" action="/">
+                <div class="filter-group">
+                    <label for="creation_range">Career Starting Year:</label>
+                    <input type="range" id="creation_range" name="creation_range" min="1950" max="2025" value="1978" oninput="document.getElementById('creation_range_val').innerText = this.value">
+                    <span id="creation_range_val">1978</span>
+                </div>
+                <div class="filter-group">
+                    <span>№ Members:</span>
+                    <label><input type="checkbox" name="members" value="1">1</label>
+                    <label><input type="checkbox" name="members" value="2">2</label>
+                    <label><input type="checkbox" name="members" value="3">3</label>
+                    <label><input type="checkbox" name="members" value="4">4</label>
+                    <label><input type="checkbox" name="members" value="5">5</label>
+                    <label><input type="checkbox" name="members" value="6">6</label>
+                    <label><input type="checkbox" name="members" value="7">7</label>
+                </div>
+                <div class="filter-group">
+                    <label for="album_min">First Album Year:</label>
+                    <input type="number" id="album_min" name="album_min" min="1950" max="2025" placeholder="From">
+                    <input type="number" id="album_max" name="album_max" min="1950" max="2025" placeholder="To">
+                </div>
+                <div class="filter-group">
+                    <span>Locations:</span>
+                    <input type="text" name="location" placeholder="Type location...">
+                </div>
+                <button type="submit">Apply Filters</button>
+            </form>
+            <div class="search-wrap">
+                <input id="search" type="text" placeholder="Search artist..." autocomplete="off">
+                <ul id="suggestions" class="suggestions" role="listbox" aria-label="Search suggestions"></ul>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        {{if .Artists}}
+            <ul class="artist-list">
+                {{range .Artists}}
+                    <li class="artist-item">
+                        <img src="{{.Image}}" alt="{{.Name}}" class="artist-img">
+                        <h2>{{.Name}}</h2>
+                        <a href="/artist?id={{.ID}}">Details</a>
+                    </li>
+                {{end}}
+            </ul>
+        {{else}}
+            <p>No artists found for selected filters.</p>
+        {{end}}
+    </main>
+
+    <div id="tetris-container"></div>
+</body>
+
+</html>
