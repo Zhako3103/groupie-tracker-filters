@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tetris Artists</title>
     <link rel="stylesheet" href="/static/css/mainpage.css">
+    <link rel="stylesheet" href="/static/css/slider.css">
     <script defer src="/static/js/script.js"></script>
 </head>
 
@@ -15,9 +16,15 @@
         <div class="header-flex">
             <form id="filters" method="get" action="/">
                 <div class="filter-group">
-                    <label for="creation_range">Career Starting Year:</label>
-                    <input type="range" id="creation_range" name="creation_range" min="1950" max="2025" value="1978" oninput="document.getElementById('creation_range_val').innerText = this.value">
-                    <span id="creation_range_val">1978</span>
+                    <label>Career Starting Year:</label>
+                    <div class="range-slider-flex">
+                        <span id="creation_min_val">1950</span>
+                        <div class="range-slider">
+                            <input type="range" id="creation_min" name="creation_min" min="1950" max="2025" value="1950" oninput="updateCreationRange()">
+                            <input type="range" id="creation_max" name="creation_max" min="1950" max="2025" value="2025" oninput="updateCreationRange()">
+                        </div>
+                        <span id="creation_max_val">2025</span>
+                    </div>
                 </div>
                 <div class="filter-group">
                     <span>№ Members:</span>
@@ -63,7 +70,6 @@
         {{end}}
     </main>
 
-    <div id="tetris-container"></div>
 </body>
 
 </html>
