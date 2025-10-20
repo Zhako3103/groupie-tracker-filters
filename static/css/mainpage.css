@@ -12,15 +12,15 @@ header {
     background: #111;
     padding: 12px;
     border-bottom: 2px solid #222;
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
     z-index: 10;
     width: 100vw;
+    height: 330px;
 }
 
-/* Layout for header with filters on the left and search centered */
 .header-flex {
     display: flex;
     flex-direction: row;
@@ -189,7 +189,7 @@ header {
 }
 
 main {
-    margin-top: 330px;
+    margin-top: 400px;
     padding: 0 20px;
 }
 .artist-list {
