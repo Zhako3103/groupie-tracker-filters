@@ -1,0 +1,38 @@
+.range-slider-flex {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.range-slider-flex span {
+    min-width: 40px;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+    font-family: 'Press Start 2P', monospace;
+}
+.range-slider {
+    flex: 1;
+    position: relative;
+    width: 100%;
+    margin: 0 4px;
+}
+.range-slider input[type="range"] {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    pointer-events: none;
+    background: transparent;
+}
+.range-slider input[type="range"]::-webkit-slider-thumb {
+    pointer-events: auto;
+}
+.range-slider input[type="range"]::-moz-range-thumb {
+    pointer-events: auto;
+}
+.range-slider input[type="range"]::-ms-thumb {
+    pointer-events: auto;
+}
+/* Стили для верхнего ползунка */
+.range-slider input[type="range"]:nth-child(1) {
+    background: transparent;
+}
